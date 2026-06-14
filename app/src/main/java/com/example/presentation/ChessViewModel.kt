@@ -33,13 +33,11 @@ class ChessViewModel : ViewModel() {
 
     // App Preferences (In-Memory, simple and robust)
     var isDarkMode by mutableStateOf(true)
-        private set
     var activeTheme by mutableStateOf(BoardTheme.EMERALD)
-        private set
     var soundEnabled by mutableStateOf(true)
-        private set
     var vibrationEnabled by mutableStateOf(true)
-        private set
+    var legalHintsEnabled by mutableStateOf(true)
+    var autoPromotionEnabled by mutableStateOf(true)
 
     // ————— Mode 1: Play Offline State —————
     private val _offlineGameState = MutableStateFlow(ChessGameState())
@@ -127,6 +125,8 @@ class ChessViewModel : ViewModel() {
     fun selectTheme(theme: BoardTheme) { activeTheme = theme }
     fun toggleSound() { soundEnabled = !soundEnabled }
     fun toggleVibration() { vibrationEnabled = !vibrationEnabled }
+    fun toggleLegalHints() { legalHintsEnabled = !legalHintsEnabled }
+    fun toggleAutoPromotion() { autoPromotionEnabled = !autoPromotionEnabled }
 
     // ———————————————————————————————————————————
     // OFFLINE GAMEPLAY ACTIONS

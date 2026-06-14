@@ -9,5 +9,4 @@ sealed class ScreenState {
     object Learn : ScreenState()
     object Analysis : ScreenState()
     object Settings : ScreenState()
-    object Roadmap : ScreenState()
 }

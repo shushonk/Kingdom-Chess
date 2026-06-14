@@ -87,7 +87,6 @@ class MainActivity : ComponentActivity() {
                 is ScreenState.Learn -> LearnScreen(viewModel = viewModel)
                 is ScreenState.Analysis -> AnalysisScreen(viewModel = viewModel)
                 is ScreenState.Settings -> SettingsScreen(viewModel = viewModel)
-                is ScreenState.Roadmap -> RoadmapScreen(viewModel = viewModel)
               }
             }
           }

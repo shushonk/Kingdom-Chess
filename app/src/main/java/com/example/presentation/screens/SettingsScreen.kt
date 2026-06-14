@@ -61,13 +61,56 @@ fun SettingsScreen(
             verticalArrangement = Arrangement.spacedBy(20.dp)
         ) {
             
-            // ————— SECTION 1: VISUAL THEMES —————
+            // ————— SECTION 1: APPEARANCE —————
             Text(
-                text = "COSMIC BOARD THEMES (2D)",
+                text = "APPEARANCE",
                 fontSize = 12.sp,
                 fontWeight = FontWeight.Bold,
                 letterSpacing = 2.sp,
                 color = MaterialTheme.colorScheme.primary
+            )
+
+            // Light/Dark Mode card
+            Card(
+                shape = RoundedCornerShape(12.dp),
+                colors = CardDefaults.cardColors(
+                    containerColor = MaterialTheme.colorScheme.surfaceColorAtElevation(1.dp)
+                )
+            ) {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Column(modifier = Modifier.weight(1f)) {
+                        Text(
+                            text = "Enforce AMOLED Dark Mode",
+                            fontSize = 14.sp,
+                            fontWeight = FontWeight.Bold,
+                            color = MaterialTheme.colorScheme.onSurface
+                        )
+                        Text(
+                            text = "Theme defaults to premium eye-friendly dark colors.",
+                            fontSize = 11.sp,
+                            color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f)
+                        )
+                    }
+                    Switch(
+                        checked = viewModel.isDarkMode,
+                        onCheckedChange = { viewModel.toggleDarkMode() },
+                        modifier = Modifier.testTag("dark_mode_toggle")
+                    )
+                }
+            }
+
+            // Board Theme Selector Header
+            Text(
+                text = "Board Color Theme",
+                fontSize = 14.sp,
+                fontWeight = FontWeight.Bold,
+                color = MaterialTheme.colorScheme.onSurface
             )
 
             // Grid of board themes (Using simple flow layout/rows to prevent height nesting crashes inside scrollable)
@@ -147,14 +190,49 @@ fun SettingsScreen(
 
             Divider(color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.1f))
 
-            // ————— SECTION 3: AUDIO & SENSORY SENSITIVITIES —————
+            // ————— SECTION 2: GAMEPLAY —————
             Text(
-                text = "SENSORY PREFERENCES",
+                text = "GAMEPLAY PREFERENCES",
                 fontSize = 12.sp,
                 fontWeight = FontWeight.Bold,
                 letterSpacing = 2.sp,
                 color = MaterialTheme.colorScheme.primary
             )
+
+            // Legal Move Hints
+            Card(
+                shape = RoundedCornerShape(12.dp),
+                colors = CardDefaults.cardColors(
+                    containerColor = MaterialTheme.colorScheme.surfaceColorAtElevation(1.dp)
+                )
+            ) {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Column(modifier = Modifier.weight(1f)) {
+                        Text(
+                            text = "Legal Move Highlights",
+                            fontSize = 14.sp,
+                            fontWeight = FontWeight.Bold,
+                            color = MaterialTheme.colorScheme.onSurface
+                        )
+                        Text(
+                            text = "Show legal destination dots when selecting a piece on the board.",
+                            fontSize = 11.sp,
+                            color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f)
+                        )
+                    }
+                    Switch(
+                        checked = viewModel.legalHintsEnabled,
+                        onCheckedChange = { viewModel.toggleLegalHints() },
+                        modifier = Modifier.testTag("legal_hints_toggle")
+                    )
+                }
+            }
 
             // Sound Effects Swinger
             Card(
@@ -170,7 +248,7 @@ fun SettingsScreen(
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Column {
+                    Column(modifier = Modifier.weight(1f)) {
                         Text(
                             text = "Play Sound Effects",
                             fontSize = 14.sp,
@@ -205,7 +283,7 @@ fun SettingsScreen(
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Column {
+                    Column(modifier = Modifier.weight(1f)) {
                         Text(
                             text = "Haptic Vibration Feedback",
                             fontSize = 14.sp,
@@ -226,7 +304,7 @@ fun SettingsScreen(
                 }
             }
 
-            // Light/Dark Mode card
+            // Auto Promotion
             Card(
                 shape = RoundedCornerShape(12.dp),
                 colors = CardDefaults.cardColors(
@@ -240,28 +318,167 @@ fun SettingsScreen(
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Column {
+                    Column(modifier = Modifier.weight(1f)) {
                         Text(
-                            text = "Enforce AMOLED Dark Mode",
+                            text = "Auto Queen Promotion",
                             fontSize = 14.sp,
                             fontWeight = FontWeight.Bold,
                             color = MaterialTheme.colorScheme.onSurface
                         )
                         Text(
-                            text = "Theme defaults to premium eye-friendly dark colors.",
+                            text = "Automatically promote pawns reaching the furthest rank to queens.",
                             fontSize = 11.sp,
                             color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f)
                         )
                     }
                     Switch(
-                        checked = viewModel.isDarkMode,
-                        onCheckedChange = { viewModel.toggleDarkMode() },
-                        modifier = Modifier.testTag("dark_mode_toggle")
+                        checked = viewModel.autoPromotionEnabled,
+                        onCheckedChange = { viewModel.toggleAutoPromotion() },
+                        modifier = Modifier.testTag("auto_promotion_toggle")
                     )
                 }
             }
 
-            Spacer(modifier = Modifier.height(16.dp))
+            Divider(color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.1f))
+
+            // ————— SECTION 3: APP FEATURES —————
+            Text(
+                text = "APP FEATURES",
+                fontSize = 12.sp,
+                fontWeight = FontWeight.Bold,
+                letterSpacing = 2.sp,
+                color = MaterialTheme.colorScheme.primary
+            )
+
+            Card(
+                shape = RoundedCornerShape(12.dp),
+                colors = CardDefaults.cardColors(
+                    containerColor = MaterialTheme.colorScheme.surfaceColorAtElevation(1.dp)
+                ),
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Column(
+                    modifier = Modifier.padding(16.dp),
+                    verticalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    val features = listOf(
+                        "Offline chess",
+                        "AI opponent",
+                        "Puzzle training",
+                        "Learn chess lessons",
+                        "Analysis board",
+                        "Board themes",
+                        "Sound and vibration settings",
+                        "Move history",
+                        "Legal move highlighting",
+                        "Check and checkmate detection"
+                    )
+                    features.forEach { feature ->
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.spacedBy(8.dp)
+                        ) {
+                            Text(
+                                text = "✓",
+                                fontWeight = FontWeight.Bold,
+                                color = Color(0xFF81C784),
+                                fontSize = 14.sp
+                            )
+                            Text(
+                                text = feature,
+                                fontSize = 13.sp,
+                                color = MaterialTheme.colorScheme.onSurface
+                            )
+                        }
+                    }
+                }
+            }
+
+            Divider(color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.1f))
+
+            // ————— SECTION 4: ABOUT & LEGAL —————
+            Text(
+                text = "ABOUT & METADATA",
+                fontSize = 12.sp,
+                fontWeight = FontWeight.Bold,
+                letterSpacing = 2.sp,
+                color = MaterialTheme.colorScheme.primary
+            )
+
+            Card(
+                shape = RoundedCornerShape(12.dp),
+                colors = CardDefaults.cardColors(
+                    containerColor = MaterialTheme.colorScheme.surfaceColorAtElevation(1.dp)
+                ),
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Column(
+                    modifier = Modifier.padding(16.dp),
+                    verticalArrangement = Arrangement.spacedBy(12.dp)
+                ) {
+                    Column {
+                        Text(
+                            text = "About Kingdom Chess",
+                            fontSize = 13.sp,
+                            fontWeight = FontWeight.Bold,
+                            color = MaterialTheme.colorScheme.onSurface
+                        )
+                        Spacer(modifier = Modifier.height(2.dp))
+                        Text(
+                            text = "Kingdom Chess is an original mobile chess game built for offline play, AI battles, puzzle training, learning, and analysis.",
+                            fontSize = 12.sp,
+                            color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
+                        )
+                    }
+
+                    Column {
+                        Text(
+                            text = "Developer",
+                            fontSize = 13.sp,
+                            fontWeight = FontWeight.Bold,
+                            color = MaterialTheme.colorScheme.onSurface
+                        )
+                        Spacer(modifier = Modifier.height(2.dp))
+                        Text(
+                            text = "Created by Shashank V",
+                            fontSize = 12.sp,
+                            color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
+                        )
+                    }
+
+                    Column {
+                        Text(
+                            text = "Privacy",
+                            fontSize = 13.sp,
+                            fontWeight = FontWeight.Bold,
+                            color = MaterialTheme.colorScheme.onSurface
+                        )
+                        Spacer(modifier = Modifier.height(2.dp))
+                        Text(
+                            text = "Kingdom Chess does not collect personal data in offline mode.",
+                            fontSize = 12.sp,
+                            color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
+                        )
+                    }
+
+                    Column {
+                        Text(
+                            text = "Version",
+                            fontSize = 13.sp,
+                            fontWeight = FontWeight.Bold,
+                            color = MaterialTheme.colorScheme.onSurface
+                        )
+                        Spacer(modifier = Modifier.height(2.dp))
+                        Text(
+                            text = "Version 1.0.0",
+                            fontSize = 12.sp,
+                            color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
+                        )
+                    }
+                }
+            }
+
+            Spacer(modifier = Modifier.height(24.dp))
         }
     }
 }

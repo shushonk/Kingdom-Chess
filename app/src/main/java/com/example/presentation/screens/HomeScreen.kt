@@ -48,23 +48,23 @@ fun HomeScreen(
     val menuItems = listOf(
         HomeMenuItem(
             title = "Play Offline",
-            subtitle = "Local Pass & Play",
+            subtitle = "Play pass-and-play chess on one device.",
             iconString = "👥",
             colorAccent = Color(0xFF64B5F6),
             targetScreen = ScreenState.PlayOffline,
             testTag = "play_offline_button"
         ),
         HomeMenuItem(
-            title = "Vs Computer",
-            subtitle = "Adaptive Engine AI",
+            title = "Play vs Computer",
+            subtitle = "Challenge the built-in AI opponent.",
             iconString = "🤖",
             colorAccent = Color(0xFFFF8A65),
             targetScreen = ScreenState.PlayVsComputer,
             testTag = "play_computer_button"
         ),
         HomeMenuItem(
-            title = "Tactical Puzzles",
-            subtitle = "Sharpen Chess Sight",
+            title = "Puzzles",
+            subtitle = "Solve chess tactics and improve your strategy.",
             iconString = "⚡",
             colorAccent = Color(0xFFFFD54F),
             targetScreen = ScreenState.Puzzles,
@@ -72,7 +72,7 @@ fun HomeScreen(
         ),
         HomeMenuItem(
             title = "Learn Chess",
-            subtitle = "Interactive Lessons",
+            subtitle = "Learn rules, tactics, and chess basics step by step.",
             iconString = "🎓",
             colorAccent = Color(0xFF81C784),
             targetScreen = ScreenState.Learn,
@@ -80,23 +80,15 @@ fun HomeScreen(
         ),
         HomeMenuItem(
             title = "Analysis Board",
-            subtitle = "Sandbox Position Lab",
+            subtitle = "Study moves and test positions freely.",
             iconString = "🔍",
             colorAccent = Color(0xFFBA68C8),
             targetScreen = ScreenState.Analysis,
             testTag = "analysis_button"
         ),
         HomeMenuItem(
-            title = "Kingdom Roadmap",
-            subtitle = "1000+ Feature Plans",
-            iconString = "📜",
-            colorAccent = Color(0xFF81D4FA),
-            targetScreen = ScreenState.Roadmap,
-            testTag = "roadmap_button"
-        ),
-        HomeMenuItem(
-            title = "App Settings",
-            subtitle = "Sensory & Board Setup",
+            title = "Settings",
+            subtitle = "Customize board, sound, vibration, and app preferences.",
             iconString = "⚙️",
             colorAccent = Color(0xFF90A4AE),
             targetScreen = ScreenState.Settings,
@@ -155,7 +147,7 @@ fun HomeScreen(
                         )
                         Spacer(modifier = Modifier.height(4.dp))
                         Text(
-                            text = "Rule the board, master the kingdom in native flat or immersive 3D graphics.",
+                            text = "Rule the board. Master the kingdom.",
                             fontSize = 13.sp,
                             color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.8f)
                         )

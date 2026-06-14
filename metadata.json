@@ -1,6 +1,6 @@
 {
   "name": "Kingdom Chess",
-  "description": "An elegant, feature-rich Android chess app featuring a native 3D Chess Arena, adaptive computer AI, offline play, tactical puzzles, interactive lessons, a sandbox free-play board, and custom styling.",
+  "description": "An elegant, feature-rich Android chess app featuring adaptive computer AI, offline play, tactical puzzles, interactive lessons, a sandbox free-play board, and custom styling.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }
