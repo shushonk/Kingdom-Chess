@@ -1,1 +1,2 @@
 Kingdom Chess is a native Android chess app built with Kotlin and Jetpack Compose. It includes offline chess, AI opponent mode, puzzles, learning screens, analysis board, royal themed UI, and a feature-ready roadmap.
+ 
